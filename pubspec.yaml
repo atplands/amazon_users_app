@@ -43,7 +43,7 @@ dependencies:
   image_picker: ^0.8.5+3
   fluttertoast: ^8.0.9
   shared_preferences: ^2.0.15
-  flutter_staggered_grid_view: ^0.6.2
+  flutter_staggered_grid_view: ^0.4.0
   flutter_webview_plugin: ^0.4.0
   cart_stepper: ^3.0.0
   smooth_star_rating_nsafe: ^1.0.0+1
