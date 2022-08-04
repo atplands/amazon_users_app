@@ -7,58 +7,46 @@ import 'package:users_app/widgets/appbar_cart_badge.dart';
 import '../global/global.dart';
 import '../models/items.dart';
 
-
-
-
-class ItemsDetailsScreen extends StatefulWidget
-{
+class ItemsDetailsScreen extends StatefulWidget {
   Items? model;
 
-  ItemsDetailsScreen({this.model,});
+  ItemsDetailsScreen({
+    this.model,
+  });
 
   @override
   State<ItemsDetailsScreen> createState() => _ItemsDetailsScreenState();
 }
 
-
-
-class _ItemsDetailsScreenState extends State<ItemsDetailsScreen>
-{
+class _ItemsDetailsScreenState extends State<ItemsDetailsScreen> {
   int counterLimit = 1;
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBarWithCartBadge(
         sellerUID: widget.model!.sellerUID.toString(),
       ),
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: ()
-          {
-            int itemCounter = counterLimit;
+        onPressed: () {
+          int itemCounter = counterLimit;
 
-            List<String> itemsIDsList = cartMethods.separateItemIDsFromUserCartList();
+          List<String> itemsIDsList = cartMethods.separateItemIDsFromUserCartList();
 
-            //1. check if item exist already in cart
-            if(itemsIDsList.contains(widget.model!.itemID))
-            {
-              Fluttertoast.showToast(msg: "Item is already in Cart.");
-            }
-            else
-            {
-              //2. add item in cart
-              cartMethods.addItemToCart(
-                widget.model!.itemID.toString(),
-                itemCounter,
-                context,
-              );
-            }
-          },
-          label: const Text(
-            "Add to Cart"
-          ),
+          //1. check if item exist already in cart
+          if (itemsIDsList.contains(widget.model!.itemID)) {
+            Fluttertoast.showToast(msg: "Item is already in Cart.");
+          } else {
+            //2. add item in cart
+            cartMethods.addItemToCart(
+              widget.model!.itemID.toString(),
+              itemCounter,
+              context,
+            );
+          }
+        },
+        label: const Text("Add to Cart"),
         icon: const Icon(
           Icons.add_shopping_cart_rounded,
           color: Colors.white,
@@ -69,7 +57,6 @@ class _ItemsDetailsScreenState extends State<ItemsDetailsScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Image.network(
               widget.model!.thumbnailUrl.toString(),
             ),
@@ -84,10 +71,8 @@ class _ItemsDetailsScreenState extends State<ItemsDetailsScreen>
                   deActiveBackgroundColor: Colors.red,
                   activeForegroundColor: Colors.white,
                   activeBackgroundColor: Colors.pinkAccent,
-                  didChangeCount: (value)
-                  {
-                    if(value < 1)
-                    {
+                  didChangeCount: (value) {
+                    if (value < 1) {
                       Fluttertoast.showToast(msg: "The quantity cannot be less than 1");
                       return;
                     }
@@ -148,8 +133,9 @@ class _ItemsDetailsScreenState extends State<ItemsDetailsScreen>
               ),
             ),
 
-            const SizedBox(height: 30,),
-
+            const SizedBox(
+              height: 30,
+            ),
           ],
         ),
       ),
